@@ -1,31 +1,61 @@
-let todoInput = document.querySelector("todo-input");
-let addBtn = document.querySelector("add");
-let todoForm = document.querySelector("todo-form");
-let todoList = document.querySelector("todo-list");
+let todoInput = document.querySelector("#todo-input");
+let addBtn = document.querySelector("#add");
+let todoForm = document.querySelector("#todo-form");
+let todoList = document.querySelector("#todo-list");
 
-let tabTask = [];
+let todos = [];
+
 
 function addTodo(){
     const value = todoInput.value;
-    
-    if(value.trim() === "") return;
-    
+
     const newTask = {
-        id: Date.now(),
+        ID: Date.now(),
         text: value,
         completed: false
     };
-    
-    tabTask.push(newTask);
-    todoInput.value = "";
+
+    todos.push(newTask);
+
+    renderTodos();
 }
 
-console.log(tabTask[0]);
+function renderTodos(){
+    todos.forEach((todo) => {
+        const li = document.createElement("li");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = todo.completed;
+        checkbox.addEventListener("change", () => toggleTodo(todo.ID))
 
-// function renderTodos(){
-//     for(i = 0; i < tabTask.length; i++){
-//         const task = document.createElement("li");
-//         const taskText = document.createTextNode()
-//     }
+        // Texte de la tâche
+        const span = document.createElement("span");
+        span.textContent = todo.text;
+        if (todo.completed) {
+        span.classList.add("completed");
+        }
 
+        // Delete button
+        const deletebtn = document.createElement("button");
+        deletebtn.textContent = "Delete";
+        deletebtn.addEventListener("click", () => deleteTodo(todo.ID));
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(deletebtn);
+        todoList.appendChild(li);
+
+        }
+    )
+}
+
+function deleteTodo(id){
+    todos = todos.filter((todo) => todo.id !== id);
+    renderTodos();
+}
+
+// function toggleToo(id){
+    
 // }
+
+
