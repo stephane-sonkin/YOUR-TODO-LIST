@@ -16,7 +16,8 @@ function addTodo(){
     };
 
     todos.push(newTask);
-
+    todoInput.value = "";
+    saveToLocalStorage();
     renderTodos();
 }
 
@@ -50,12 +51,31 @@ function renderTodos(){
 }
 
 function deleteTodo(id){
-    todos = todos.filter((todo) => todo.id !== id);
+    todos = todos.filter((todo) => todo.ID !== id);
     renderTodos();
 }
 
-// function toggleToo(id){
-    
-// }
+function toggleTodo(id){
+    const todo = todos.find((todo) => todo.ID === id);
+    if (todo) {
+        todo.completed = !todo.completed;
+        saveToLocalStorage();
+        renderTodos();
+    }
+}
+
+
+function saveToLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function loadFromLocalStorage() {
+  const storedTodos = localStorage.getItem("todos");
+  todos = storedTodos ? JSON.parse(storedTodos) : [];
+  renderTodos();
+}
+
+// Load tasks on starting
+loadFromLocalStorage();
 
 
