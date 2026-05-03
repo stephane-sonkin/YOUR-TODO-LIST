@@ -22,8 +22,9 @@ Built with a modern UI approach, featuring clean layout separation and smooth us
 
 ### 📱 Mobile View
 
+![Mobile view]
 <p align="center">
-    ![Mobile view](/assets/mobile_view.png)
+    <img src="/assets/mobile_view.png" alt="Mobile View" width="300">
 </p>
 
 ---
