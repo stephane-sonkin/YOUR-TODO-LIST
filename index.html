@@ -1,27 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>My todo-list</title>
+    <title>My todo-app</title>
   </head>
   <body>
-    <div class="container">
-      <h1>My Todo List</h1>
-      <form id="todo-form">
-        <input
-          type="text"
-          id="todo-input"
-          placeholder="Add a new task..."
-          required
-        />
-        <button type="submit" id="addi">Add Task</button>
-      </form>
-      <ul id="todo-list">
-        <!-- Tasks will be added here dynamically -->
-      </ul>
-    </div>
+    <main class="app" role="application">
+      <header class="header">
+        <div>
+          <h1 class="title">My Todo APP</h1>
+        </div>
+      </header>
+
+      <section class="panel panel--form">
+        <h2 class="section-title">Ad a task</h2>
+        <form id="todo-form" class="new-todo">
+          <input
+            type="text"
+            id="todo-input"
+            placeholder="Add a task..."
+            required
+          />
+          <button type="submit" id="addi" class="btn">Add</button>
+        </form>
+      </section>
+
+      <section class="panel list-wrap">
+        <div class="list-header">
+          <div>
+            <h2 class="section-title">Tasks</h2>
+          </div>
+        </div>
+        <ul id="todo-list" class="todos">
+          <!-- Tasks will be added here dynamically -->
+        </ul>
+      </section>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

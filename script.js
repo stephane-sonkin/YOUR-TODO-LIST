@@ -11,6 +11,7 @@
 // Reusable references to key DOM elements. Keep selectors in sync with HTML.
 let todoInput = document.querySelector("#todo-input");
 let addBtn = document.querySelector("#addi");
+let todoForm = document.querySelector("#todo-form");
 let todoList = document.querySelector("#todo-list");
 
 // ---------- In-memory state ------------------------------------------------
@@ -19,7 +20,10 @@ let todos = [];
 
 // ---------- Event wiring ---------------------------------------------------
 
-addBtn.addEventListener("click", addTodo);
+todoForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  addTodo();
+});
 
 // ---------- Core functions -------------------------------------------------
 /**
@@ -43,7 +47,7 @@ function addTodo() {
     completed: false,
   };
 
-  todos.push(newTask);
+  todos.unshift(newTask);
   todoInput.value = ""; // reset input after adding
   saveToLocalStorage();
   renderTodos();
@@ -62,13 +66,17 @@ function renderTodos() {
 
   todos.forEach((todo) => {
     const li = document.createElement("li");
+    li.className = "todo";
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = todo.completed;
+    checkbox.className = "checkbox";
     checkbox.addEventListener("change", () => toggleTodo(todo.ID));
 
-    // Texte de la tâche
+    // Task text
     const span = document.createElement("span");
+    span.className = "text";
     span.textContent = todo.text;
     if (todo.completed) {
       span.classList.add("completed");
@@ -76,7 +84,9 @@ function renderTodos() {
 
     // Delete button
     const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
+    deleteBtn.className = "icon-btn";
+    deleteBtn.textContent = "Supprimer";
+    deleteBtn.setAttribute("aria-label", "Supprimer la tâche");
     deleteBtn.addEventListener("click", () => deleteTodo(todo.ID));
 
     li.appendChild(checkbox);
@@ -107,7 +117,6 @@ function toggleTodo(id) {
   if (todo) {
     todo.completed = !todo.completed;
     saveToLocalStorage();
-    renderTodos();
   }
 }
 
