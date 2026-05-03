@@ -11,7 +11,7 @@ Built with a modern UI approach, featuring clean layout separation and smooth us
   <img src="/assets/Animation.gif" alt="todo Demo" width="600">
 </p>
 
-🔗 [Try](https://stephane-sonkin.github.io/YOUR_TODO_APP/)
+🔗 [Try](https://stephane-sonkin.github.io/MY-TODO-APP/)
 
 ---
 
